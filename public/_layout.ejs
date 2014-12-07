@@ -37,7 +37,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!-- build:css(app) styles/vendor.css -->
+	<!-- build:css(app) dist/vendor.min.css -->
 	<!-- bower:css -->
 	<link rel="stylesheet" href="lib/bower_components/bootstrap/dist/css/bootstrap.css" />
 	<link rel="stylesheet" href="lib/bower_components/fontawesome/css/font-awesome.css" />
@@ -45,7 +45,7 @@
 	<!-- endbower -->
 	<!-- endbuild -->
 
-	<!-- build:css(app) styles/app.css -->
+	<!-- build:css(app) dist/application.min.css -->
 	<!-- injector:css -->
 	<link rel="stylesheet" href="/modules/core/css/core.css">
 	<link rel="stylesheet" href="/modules/users/css/users.css">
@@ -71,7 +71,7 @@
 			var __envName = '<%- environment %>';
 		</script>
 	<% } %>
-	<!-- build:js(app) scripts/vendor.js -->
+	<!-- build:js(app) dist/vendor.min.js -->
 	<!-- bower:js -->
 	<script src="lib/bower_components/jquery/dist/jquery.js"></script>
 	<script src="lib/bower_components/modernizr/modernizr.js"></script>
@@ -93,7 +93,7 @@
 	<!-- endbuild -->
 
 
-	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!-- build:js({.tmp,app}) dist/application.min.js -->
 	<!-- injector:js -->
 	<script src="/app.config.js"></script>
 	<script src="/application.js"></script>

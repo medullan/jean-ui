@@ -13,7 +13,9 @@ var watchFiles = {
   ],
   serverJS: ['gruntfile.js', 'config/**/*.js'],
   serverJSON: ['harp.json', 'package.json', 'bower.json', 'public/**/*.json', 'config/**/*.json' ],
-  serverViews: ['public/*.ejs', 'public/views/**/*.ejs']
+  serverViews: ['public/*.ejs', 'public/views/**/*.ejs'],
+  bowerJS: require('./config/grunt/files'),
+  bowerCSS: require('./config/grunt/bower-css-files')
 };
 
 // Project Configuration
@@ -86,14 +88,16 @@ grunt.initConfig({
           mangle: false
         },
         files: {
-          'public/dist/application.min.js': 'public/dist/application.js'
+          'public/dist/application.min.js': 'public/dist/application.js',
+          'public/dist/vendor.min.js': '<%= meta.files.bowerJS %>'
         }
       }
     },
     cssmin: {
       combine: {
         files: {
-          'public/dist/application.min.css': '<%= meta.files.clientCSS %>'
+          'public/dist/application.min.css': '<%= meta.files.clientCSS %>',
+          'public/dist/vendor.min.css': '<%= meta.files.bowerCSS %>'
         }
       }
     },
@@ -206,6 +210,9 @@ grunt.initConfig({
   // Default task(s).
   grunt.registerTask('default', ['lint', 'inject', 'inject:resources']);
   grunt.registerTask('serve', ['default', 'concurrent:serve']);
+
+  grunt.registerTask('build', ['lint', 'inject:resources', 'ngAnnotate', 'uglify', 'cssmin']);
+
   // Lint task(s).
   grunt.registerTask('lint', ['jshint', 'csslint', 'jsonlint']);
 
