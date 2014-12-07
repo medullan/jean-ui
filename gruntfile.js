@@ -195,6 +195,9 @@ grunt.initConfig({
         ignorePath: ['public/']
       }
     },
+    usemin: {
+      html: 'public/_layout.ejs'
+    },
     injector: require('./config/grunt/inject')(watchFiles)
 
   });
@@ -211,13 +214,13 @@ grunt.initConfig({
   grunt.registerTask('default', ['lint', 'inject', 'inject:resources']);
   grunt.registerTask('serve', ['default', 'concurrent:serve']);
 
-  grunt.registerTask('build', ['lint', 'inject:resources', 'ngAnnotate', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['lint','inject', 'inject:resources', 'ngAnnotate', 'uglify', 'cssmin', 'usemin']);
 
   // Lint task(s).
   grunt.registerTask('lint', ['jshint', 'csslint', 'jsonlint']);
 
   // Injection tasks
-  grunt.registerTask('inject', ['injector:app_js', 'injector:app_css', 'bowerInstall']);
+  grunt.registerTask('inject', ['injector:appfiles', 'bowerInstall']);
   grunt.registerTask('inject:resources', ['injector:testfiles', 'injector:bowerCSS']);
 
   // Test task.

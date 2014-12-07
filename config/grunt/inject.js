@@ -7,22 +7,15 @@ module.exports = function(watchFiles){
 
   var inject = {
     options: {
-      //ignorePath: ['public/']
+      template: 'public/template.layout.ejs',
+      destFile: 'public/_layout.ejs'
     },
-    app_js: {
+    appfiles: {
       options: {
         ignorePath: ['public/']
       },
       files: {
-        'public/_layout.ejs': watchFiles.clientJS,
-      }
-    },
-    app_css: {
-      options: {
-        ignorePath: ['public/']
-      },
-      files: {
-        'public/_layout.ejs': watchFiles.clientCSS,
+        'public/_layout.ejs': watchFiles.clientJS.concat(watchFiles.clientCSS),
       }
     },
     testfiles:{
