@@ -27,6 +27,7 @@ To specify a port, run
 ```bash
 $ grunt serve --port=$PORT
 ```
+NB. Ensure the server/api JEAN-UI points to is also running. 
 
 ### Environment Variables
 You can set environment variables that will be available in the `CoreConstants` angular constant within the `core module`.
