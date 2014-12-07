@@ -30,7 +30,7 @@
 	<meta name="twitter:image" content="/img/brand/logo.png">
 
 	<!-- Fav Icon -->
-	<link href="public/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
@@ -57,14 +57,19 @@
 <body id="page-top" class="ng-cloak index" ng-controller="SiteCtrl">
 	<header id="header" data-ng-include="'/modules/core/views/header.client.view.html'" class="header"></header>
 	<section class="content">
-		<section class="container main" ui-view>
-
+		<section class="container main">
+			<!-- yeild will populate content from other files such as index.ejs -->
+			<%- yield %>
 		</section>
 	</section>
 	<footer id="footer" data-ng-include="'/modules/core/views/footer.client.view.html'" class="theme-black"></footer>
 
-	<script src="/__/env.js"></script>
 
+	<% if (env) { %>
+		<script>
+			var __env = <%- JSON.stringify(env) %>;
+		</script>
+	<% } %>
 	<!-- build:js(app) scripts/vendor.js -->
 	<!-- bower:js -->
 	<script src="lib/bower_components/jquery/dist/jquery.js"></script>
@@ -79,11 +84,8 @@
 	<script src="lib/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="lib/bower_components/angular-logex/dist/log-ex-unobtrusive.js"></script>
 	<script src="lib/bower_components/angular-utilz/dist/angular-utilz.js"></script>
-	<script src="lib/bower_components/lodash/dist/lodash.compat.js"></script>
-	<script src="lib/bower_components/restangular/dist/restangular.js"></script>
 	<script src="lib/bower_components/angular-scroll/angular-scroll.min.js"></script>
 	<script src="lib/bower_components/angular-truncate/src/truncate.js"></script>
-	<script src="lib/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 	<script src="lib/bower_components/angular-jwt/dist/angular-jwt.js"></script>
 	<script src="lib/bower_components/a0-angular-storage/dist/angular-storage.js"></script>
 	<!-- endbower -->
@@ -94,7 +96,8 @@
 	<!-- injector:js -->
 	<script src="/app.config.js"></script>
 	<script src="/application.js"></script>
-	<script src="/modules/core/js/_core.client.module.js"></script>
+	<script src="/modules/core/js/core.client.module.js"></script>
+	<script src="/modules/users/js/users.client.module.js"></script>
 	<script src="/modules/core/js/config/core.client.config.js"></script>
 	<script src="/modules/core/js/config/core.client.routes.js"></script>
 	<script src="/modules/core/js/config/core.config.logging.js"></script>
@@ -105,7 +108,6 @@
 	<script src="/modules/core/js/directives/browsertitle.core.directive.js"></script>
 	<script src="/modules/core/js/services/browsertitle.core.service.js"></script>
 	<script src="/modules/core/js/services/menus.client.service.js"></script>
-	<script src="/modules/users/js/_users.client.module.js"></script>
 	<script src="/modules/users/js/config/users.client.routes.js"></script>
 	<script src="/modules/users/js/controllers/authentication.client.controller.js"></script>
 	<script src="/modules/users/js/services/auth.users.client.js"></script>
@@ -113,11 +115,11 @@
 	<!-- endinjector -->
 	<!-- endbuild -->
 
-	<!-- {% if process.env.NODE_ENV === 'development' %} -->
-	<!--Livereload script rendered
+	<% if (env.requiredEnv !== 'production') { %>
+	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
-	-->
-	<!-- {% endif %} -->
+	<% } %>
+
 </body>
 
 </html>

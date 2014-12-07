@@ -5,6 +5,7 @@ angular.module('core').constant('CoreConstants', (function(){
   var appName = ApplicationConfiguration.applicationModuleName;
   var envVars = null;
 
+  // Access Environment Variables, if available
   if(angular.isDefined(window.__env)){
     envVars = window.__env;
   }
@@ -18,7 +19,7 @@ angular.module('core').constant('CoreConstants', (function(){
     userInfoIdentifier: 'uinf'
   };
 
-  //Extend Core Constants with Env Variables from superstatic
+  //Extend CoreConstants with Env Variables from harp
   //The 'requiredEnv' property is used to determine which
   //sub-object (env. variables) to use within CoreConstants
   if(angular.isObject(envVars) &&

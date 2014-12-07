@@ -1,1 +1,1 @@
-web: ./node_modules/superstatic/bin/server public --port 80
+web: ./node_modules/.bin/forever -m 5 server.js

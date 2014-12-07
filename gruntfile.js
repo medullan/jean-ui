@@ -5,14 +5,15 @@ module.exports = function(grunt) {
 //var bowerFiles = require('bower-files')();
 var watchFiles = {
   clientViews: ['public/modules/**/views/**/*.html'],
-  clientJS: ['public/*.js', 'public/modules/*/js/**/*.js'],
+  clientJS: ['public/*.js','public/modules/*/js/*.js', 'public/modules/*/js/**/*.js'],
   clientCSS: ['public/modules/**/*.css'],
   tests: [
   'public/lib/bower_components/angular-mocks/angular-mocks.js',
   'public/modules/*/tests/unit/**/*.js'
   ],
-   serverJS: ['gruntfile.js', 'config/**/*.js'],
-  serverJSON: ['.env.json', 'package.json', 'bower.json' ]
+  serverJS: ['gruntfile.js', 'config/**/*.js'],
+  serverJSON: ['harp.json', 'package.json', 'bower.json', 'public/**/*.json', 'config/**/*.json' ],
+  serverViews: ['public/*.ejs', 'public/views/**/*.ejs']
 };
 
 // Project Configuration
@@ -32,6 +33,13 @@ grunt.initConfig({
       },
       clientViews: {
         files: watchFiles.clientViews,
+        options: {
+          livereload: true,
+        }
+      },
+      serverViews: {
+        files: watchFiles.serverViews,
+        tasks: ['inject'],
         options: {
           livereload: true,
         }
@@ -85,7 +93,7 @@ grunt.initConfig({
     cssmin: {
       combine: {
         files: {
-          'public/dist/application.min.css': '<%= applicationCSSFiles %>'
+          'public/dist/application.min.css': '<%= meta.files.clientCSS %>'
         }
       }
     },
@@ -95,12 +103,13 @@ grunt.initConfig({
       },
       production: {
         files: {
-          'public/dist/application.js': ['<%= applicationJavaScriptFiles %>']
+          'public/dist/application.js': ['<%= meta.files.clientJS %>']
         }
       }
     },
     concurrent: {
       docs: ['ngdocs', 'plato'],
+      serve: ['startApp', 'watch'],
       test: ['test'],
       options: {
         logConcurrentOutput: true,
@@ -182,49 +191,12 @@ grunt.initConfig({
     },
     bowerInstall: {
       index:{
-        src:['public/index.html'],
+        src:['public/_layout.ejs'],
         ignorePath: ['public/']
       }
     },
-    injector: {
-      options: {
-        //ignorePath: ['public/']
-      },
-      app_js: {
-        options: {
-          ignorePath: ['public/']
-        },
-        files: {
-          'public/index.html': watchFiles.clientJS,
-        }
-      },
-      app_css: {
-        options: {
-          ignorePath: ['public/']
-        },
-        files: {
-          'public/index.html': watchFiles.clientCSS,
-        }
-      },
-      testfiles:{
-        options:{
-          starttag: '[',
-          endtag: ']',
-          addRootSlash: false,
-          transform: function(filepath, index , length){
-            var value = '\'' + filepath + '\',\n';
-            if(value.indexOf('.js') !== -1){
-              return value;
-            }
-            return null;
-          },
-          lineEnding: ''
-        },
-        files: {
-          'config/grunt/files.js': ['bower.json']
-        }
-      }
-    }
+    injector: require('./config/grunt/inject')(watchFiles)
+
   });
 
   // Load NPM tasks
@@ -236,14 +208,14 @@ grunt.initConfig({
   //grunt.option('force', true);
 
   // Default task(s).
-  grunt.registerTask('default', ['lint', 'inject']);
-
-  // Debug task.
-  grunt.registerTask('debug', ['lint', 'concurrent:debug']);
-
+  grunt.registerTask('default', ['lint', 'inject', 'inject:resources']);
+  grunt.registerTask('serve', ['default', 'concurrent:serve']);
   // Lint task(s).
-  grunt.registerTask('lint', ['jshint', 'jsonlint']);
+  grunt.registerTask('lint', ['jshint', 'csslint', 'jsonlint']);
+
+  // Injection tasks
   grunt.registerTask('inject', ['injector:app_js', 'injector:app_css', 'bowerInstall']);
+  grunt.registerTask('inject:resources', ['injector:testfiles', 'injector:bowerCSS']);
 
   // Test task.
   grunt.registerTask('test', ['env:test', 'injector:testfiles', 'clean:coverage', 'lint', 'karma:unit']);
