@@ -1,0 +1,85 @@
+
+/*
+Override glyphicon to use FontAwesome.
+This will allow you to use fontawesome instead of glyphicons
+in directives  that are coupled to glypicons.
+
+NB. This override disallows you from using glypicons.
+*/
+.glyphicon {
+		display: inline-block;
+		font-family: FontAwesome;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-chevron-left:before {
+	content: "\f053";
+}
+.glyphicon-chevron-right:before {
+	content: "\f054";
+}
+/**********************
+override end
+**********************/
+
+.content {
+	margin-top: 50px;
+}
+
+.undecorated-link:hover {
+	text-decoration: none;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+.centered {
+	margin: 0 auto;
+	width: 0;
+}
+.no-margin {
+	margin: 0;
+	padding: 0;
+}
+
+.btn.btn-med,
+.header .navbar{
+	background-color: #f60;
+	color:whitesmoke;
+}
+
+.navbar-default .navbar-nav > li > a,
+.header .navbar a{
+	color:whitesmoke;
+}
+
+.home .well{
+	background-color: oldlace;
+}
+.intro-text{
+	text-align: center;
+}
+
+.heading-1{
+	font-size: 3em;
+}
+.heading-2{
+	font-size: 2em;
+}
+
+.row.details{
+	margin-top:50px;
+}
+
+.details .btn{
+	font-size: 1.2em;
+}
+
+.navbar-default .navbar-nav li.dropdown-menu-item  a,
+.dropdown-menu.dropdown-menu-item{
+	color:black;
+}

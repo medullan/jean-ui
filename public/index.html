@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title></title>
+
+	<!-- General META -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<!-- Semantic META -->
+	<meta name="keywords" content="{{keywords}}">
+	<meta name="description" content="{{description}}">
+
+	<!-- Facebook META -->
+	<meta property="fb:app_id" content="{{facebookAppId}}">
+	<meta property="og:site_name" content="{{title}}">
+	<meta property="og:title" content="{{title}}">
+	<meta property="og:description" content="{{description}}">
+	<meta property="og:url" content="{{url}}">
+	<meta property="og:image" content="/img/brand/logo.png">
+	<meta property="og:type" content="website">
+
+	<!-- Twitter META -->
+	<meta name="twitter:title" content="{{title}}">
+	<meta name="twitter:description" content="{{description}}">
+	<meta name="twitter:url" content="{{url}}">
+	<meta name="twitter:image" content="/img/brand/logo.png">
+
+	<!-- Fav Icon -->
+	<link href="public/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+	<!-- HTML5 Shim -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- build:css(app) styles/vendor.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="lib/bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="lib/bower_components/fontawesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="lib/bower_components/animate.css/animate.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:css(app) styles/app.css -->
+	<!-- injector:css -->
+	<link rel="stylesheet" href="/modules/core/css/core.css">
+	<link rel="stylesheet" href="/modules/users/css/users.css">
+	<!-- endinjector -->
+	<!-- endbuild -->
+
+</head>
+
+<body id="page-top" class="ng-cloak index" ng-controller="SiteCtrl">
+	<header id="header" data-ng-include="'/modules/core/views/header.client.view.html'" class="header"></header>
+	<section class="content">
+		<section class="container main" ui-view>
+
+		</section>
+	</section>
+	<footer id="footer" data-ng-include="'/modules/core/views/footer.client.view.html'" class="theme-black"></footer>
+
+	<script src="/__/env.js"></script>
+
+	<!-- build:js(app) scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="lib/bower_components/jquery/dist/jquery.js"></script>
+	<script src="lib/bower_components/modernizr/modernizr.js"></script>
+	<script src="lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="lib/bower_components/moment/moment.js"></script>
+	<script src="lib/bower_components/angular/angular.js"></script>
+	<script src="lib/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="lib/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="lib/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="lib/bower_components/angular-ui-utils/ui-utils.js"></script>
+	<script src="lib/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="lib/bower_components/angular-logex/dist/log-ex-unobtrusive.js"></script>
+	<script src="lib/bower_components/angular-utilz/dist/angular-utilz.js"></script>
+	<script src="lib/bower_components/lodash/dist/lodash.compat.js"></script>
+	<script src="lib/bower_components/restangular/dist/restangular.js"></script>
+	<script src="lib/bower_components/angular-scroll/angular-scroll.min.js"></script>
+	<script src="lib/bower_components/angular-truncate/src/truncate.js"></script>
+	<script src="lib/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+	<script src="lib/bower_components/angular-jwt/dist/angular-jwt.js"></script>
+	<script src="lib/bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!-- injector:js -->
+	<script src="/app.config.js"></script>
+	<script src="/application.js"></script>
+	<script src="/modules/core/js/_core.client.module.js"></script>
+	<script src="/modules/core/js/config/core.client.config.js"></script>
+	<script src="/modules/core/js/config/core.client.routes.js"></script>
+	<script src="/modules/core/js/config/core.config.logging.js"></script>
+	<script src="/modules/core/js/constants/core.constant.client.js"></script>
+	<script src="/modules/core/js/controllers/core.client.controller.site.js"></script>
+	<script src="/modules/core/js/controllers/header.client.controller.js"></script>
+	<script src="/modules/core/js/controllers/home.client.controller.js"></script>
+	<script src="/modules/core/js/directives/browsertitle.core.directive.js"></script>
+	<script src="/modules/core/js/services/browsertitle.core.service.js"></script>
+	<script src="/modules/core/js/services/menus.client.service.js"></script>
+	<script src="/modules/users/js/_users.client.module.js"></script>
+	<script src="/modules/users/js/config/users.client.routes.js"></script>
+	<script src="/modules/users/js/controllers/authentication.client.controller.js"></script>
+	<script src="/modules/users/js/services/auth.users.client.js"></script>
+	<script src="/modules/users/js/services/users.client.service.js"></script>
+	<!-- endinjector -->
+	<!-- endbuild -->
+
+	<!-- {% if process.env.NODE_ENV === 'development' %} -->
+	<!--Livereload script rendered
+	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+	-->
+	<!-- {% endif %} -->
+</body>
+
+</html>
