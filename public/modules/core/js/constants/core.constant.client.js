@@ -21,8 +21,7 @@ angular.module('core').constant('CoreConstants', (function(){
   //The 'envName' variable is used to determine which
   //sub-object (env. variables) to use within CoreConstants
   if(angular.isObject(envVars) &&
-    angular.isString(envName) &&
-      envVars.requiredEnv &&
+      angular.isString(envName) &&
       envVars.hasOwnProperty(envName)  ){
 
     constant = angular.extend(constant, envVars[envName]);
