@@ -68,6 +68,7 @@
 	<% if (env) { %>
 		<script>
 			var __env = <%- JSON.stringify(env) %>;
+			var __envName = '<%- environment %>';
 		</script>
 	<% } %>
 	<!-- build:js(app) scripts/vendor.js -->
@@ -115,7 +116,7 @@
 	<!-- endinjector -->
 	<!-- endbuild -->
 
-	<% if (env.requiredEnv !== 'production') { %>
+	<% if (environment !== 'production') { %>
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 	<% } %>

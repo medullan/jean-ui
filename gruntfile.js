@@ -123,10 +123,6 @@ grunt.initConfig({
       dev: {
         NODE_ENV: 'development',
         COVERAGE: 'true'
-      },
-      localdev: {
-        NODE_ENV: 'development',
-        PORT: 4000
       }
     },
     karma: {

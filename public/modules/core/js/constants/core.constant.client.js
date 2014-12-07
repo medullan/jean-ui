@@ -3,12 +3,10 @@
 angular.module('core').constant('CoreConstants', (function(){
   var baseUrl = 'http://localhost:3000';
   var appName = ApplicationConfiguration.applicationModuleName;
-  var envVars = null;
 
   // Access Environment Variables, if available
-  if(angular.isDefined(window.__env)){
-    envVars = window.__env;
-  }
+  var envVars = window.__env;
+  var envName = window.__envName;
 
   //Default values for CoreConstants
   var constant = {
@@ -20,14 +18,15 @@ angular.module('core').constant('CoreConstants', (function(){
   };
 
   //Extend CoreConstants with Env Variables from harp
-  //The 'requiredEnv' property is used to determine which
+  //The 'envName' variable is used to determine which
   //sub-object (env. variables) to use within CoreConstants
   if(angular.isObject(envVars) &&
+    angular.isString(envName) &&
       envVars.requiredEnv &&
-      envVars.hasOwnProperty(envVars.requiredEnv)  ){
+      envVars.hasOwnProperty(envName)  ){
 
-    constant = angular.extend(constant, envVars[envVars.requiredEnv]);
-    constant.envName = envVars.requiredEnv;
+    constant = angular.extend(constant, envVars[envName]);
+    constant.envName = envName;
   }
 
   //Computed values

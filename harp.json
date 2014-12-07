@@ -1,7 +1,6 @@
 {
   "globals":{
     "env":{
-      "requiredEnv": "development",
       "development":{
         "serverBaseUrl": "http://localhost:3000"
       },

@@ -27,14 +27,14 @@ To specify a port, run
 ```bash
 $ grunt serve --port=$PORT
 ```
-NB. Ensure the server/api JEAN-UI points to is also running. 
+NB. Ensure the server/api JEAN-UI points to is also running.
 
 ### Environment Variables
 You can set environment variables that will be available in the `CoreConstants` angular constant within the `core module`.
 
 These environment variables are located in `harp.json`; within the `env` object.
 
-`requiredEnv` determines which sub-object is used by angular.
-Therefore, if `requiredEnv` is set to `development` then the `development` environment variables will be used.
+These environments are based on the variable harpjs sets to know which environment the app is in.
+This variable is set to either **production** or **development**. The Angularjs app will select a sub-object based on this value.
 
 Environment variables are extremely helpful in switching out the external api the app points to and can be used for other environment specific settings.
