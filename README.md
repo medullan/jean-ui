@@ -34,6 +34,17 @@ You can set environment variables that will be available in the `CoreConstants` 
 
 These environment variables are located in `harp.json`; within the `env` object.
 
+```json
+"env":{
+      "development":{
+        "serverBaseUrl": "http://localhost:3000"
+      },
+      "production":{
+        "serverBaseUrl": "http://your-remote-api.com"
+      }
+    }
+```
+
 These environments are based on the variable harpjs sets to know which environment the app is in.
 This variable is set to either **production** or **development**. The Angularjs app will select a sub-object based on this value.
 
